@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Timesheet System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: #1f2937;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        .topbar img {
+            border: 2px solid white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #ffffff;
+            height: 100vh;
+            padding: 20px;
+            border-right: 1px solid #e3e6f0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 0;
+            text-decoration: none;
+            color: #4e73df;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover {
+            color: #224abe;
+        }
+
+        /* Dashboard Area */
+        .dashboard-area {
+            padding: 40px;
+        }
+
+        /* Checkin Card */
+        .checkin-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #clock {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4e73df;
+            margin: 20px 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 30px;
+            background: #f8d7da;
+            color: #842029;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f8f9fc;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .check-btn {
+            background: #28a745;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 30px;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .check-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Topbar -->
+<div class="topbar d-flex justify-content-between align-items-center">
+
+    <h5 class="mb-0">Timesheet System</h5>
+
+    <div class="d-flex align-items-center">
+
+        <!-- Avatar -->
+        <img src="https://i.pravatar.cc/40"
+             alt="avatar"
+             class="rounded-circle me-2"
+             width="40"
+             height="40">
+
+        <!-- Username -->
+        <span class="me-3">Xin chào, <b>Admin</b></span>
+
+        <!-- Logout Button -->
+        <button class="btn btn-danger btn-sm">
+            Logout
+        </button>
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+          <!-- <a href="#">Dashboard</a> -->
+<a href="#">Check In / Check Out</a>
+<a href="#">Lịch sử chấm công</a>
+<a href="#">Đơn nghỉ phép</a>
+<a href="#">Số dư phép</a>
+<a href="#">Báo cáo cá nhân</a>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="col-md-10 dashboard-area">
+
+    
+    <!-- Title -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4><b>Báo cáo cá nhân</b></h4>
+
+        <div>
+            <button class="btn btn-success me-2">
+                Xuất Excel
+            </button>
+
+            <button class="btn btn-danger">
+                Xuất PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Chọn tháng -->
+    <div class="text-center mb-4">
+        <input type="month" class="form-control w-auto d-inline-block">
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Tổng giờ làm</h6>
+                <h3 class="text-primary"><b>168h</b></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Ngày công</h6>
+                <h3 class="text-info"><b>21</b></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Số ngày nghỉ</h6>
+                <h3 class="text-warning"><b>2</b></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Tăng ca</h6>
+                <h3 class="text-success"><b>10h</b></h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Salary Detail -->
+    <div class="card-custom">
+
+        <h5 class="mb-3"><b>Chi tiết lương</b></h5>
+
+        <table class="table table-bordered align-middle">
+            <tbody>
+                <tr>
+                    <th>Lương cơ bản</th>
+                    <td>15,000,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Phụ cấp</th>
+                    <td>1,000,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Thưởng</th>
+                    <td>500,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Khấu trừ</th>
+                    <td class="text-danger">- 800,000 VNĐ</td>
+                </tr>
+                <tr class="table-light">
+                    <th><b>Lương thực nhận</b></th>
+                    <td class="text-success"><b>15,700,000 VNĐ</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+        </div>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

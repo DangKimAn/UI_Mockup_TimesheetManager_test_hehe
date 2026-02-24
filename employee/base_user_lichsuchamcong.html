@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch sử chấm công</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: #1f2937;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        .topbar img {
+            border: 2px solid white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #ffffff;
+            height: 100vh;
+            padding: 20px;
+            border-right: 1px solid #e3e6f0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 0;
+            text-decoration: none;
+            color: #4e73df;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover {
+            color: #224abe;
+        }
+
+        /* Content */
+        .content-area {
+            padding: 40px;
+        }
+
+        .card-custom {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+
+        .status-present {
+            background: #d4edda;
+            color: #0f5132;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .status-late {
+            background: #fff3cd;
+            color: #856404;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .status-absent {
+            background: #f8d7da;
+            color: #842029;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Topbar -->
+<div class="topbar d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Timesheet System</h5>
+
+    <div class="d-flex align-items-center">
+        <img src="https://i.pravatar.cc/40"
+             alt="avatar"
+             class="rounded-circle me-2"
+             width="40"
+             height="40">
+
+        <span class="me-3">Xin chào, <b>Kim An</b></span>
+
+        <button class="btn btn-danger btn-sm">
+            Logout
+        </button>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+            <a href="#">Dashboard</a>
+            <a href="#">Check In / Check Out</a>
+            <a href="#"><b>Lịch sử chấm công</b></a>
+            <a href="#">Đơn nghỉ phép</a>
+            <a href="#">Số dư phép</a>
+            <a href="#">Báo cáo cá nhân</a>
+        </div>
+
+        <!-- Content -->
+        <div class="col-md-10 content-area">
+
+            <div class="card-custom">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4><b>Lịch sử chấm công</b></h4>
+                    <button class="btn btn-danger me-2">
+                    Xuất Pdf
+                    </button>
+
+                    <button class="btn btn-success">
+                    Xuất Excel
+                    </button>
+                    
+                    <!-- Filter tháng -->
+                    <input type="month" class="form-control w-auto">
+                </div>
+
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Tổng giờ làm</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01/02/2026</td>
+                            <td>08:00</td>
+                            <td>17:00</td>
+                            <td>8h 00m</td>
+                            <td><span class="status-present">Đúng giờ</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>02/02/2026</td>
+                            <td>08:20</td>
+                            <td>17:00</td>
+                            <td>7h 40m</td>
+                            <td><span class="status-late">Đi trễ</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>03/02/2026</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>0h</td>
+                            <td><span class="status-absent">Vắng mặt</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>04/02/2026</td>
+                            <td>08:05</td>
+                            <td>17:10</td>
+                            <td>8h 05m</td>
+                            <td><span class="status-present">Đúng giờ</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

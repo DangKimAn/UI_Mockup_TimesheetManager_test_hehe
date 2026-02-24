@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check In / Check Out</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#4e73df,#1cc88a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.wrapper{
+    width:380px;
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+    color:white;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    margin-right:12px;
+}
+
+.username{
+    font-weight:600;
+}
+
+.card{
+    background:white;
+    padding:35px 30px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.time-now{
+    font-size:36px;
+    font-weight:600;
+    color:#4e73df;
+    margin:15px 0;
+}
+
+.status{
+    margin:15px 0;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.work-info{
+    background:#f8f9fc;
+    padding:12px;
+    border-radius:12px;
+    font-size:14px;
+    margin-bottom:20px;
+    text-align:left;
+}
+
+.work-info div{
+    margin-bottom:6px;
+}
+
+.label{
+    font-weight:600;
+}
+
+.btn-check{
+    width:100%;
+    padding:14px;
+    border-radius:15px;
+    border:none;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    color:white;
+}
+
+.btn-check:hover{
+    opacity:0.9;
+}
+
+.checkin{
+    background:#1cc88a;
+}
+
+.checkout{
+    background:#e74a3b;
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+
+<div class="card">
+
+    <h2>Chấm Công Hôm Nay</h2>
+
+    <div class="time-now" id="currentTime"></div>
+
+    <div class="status" id="statusBox">
+        <div class="dot" id="statusDot"></div>
+        <span id="statusText"></span>
+    </div>
+
+    <div class="work-info">
+        <div><span class="label">Giờ Check In:</span> <span id="checkInTime">--:--</span></div>
+        <div><span class="label">Thời gian làm việc:</span> <span id="workingTime">00:00:00</span></div>
+    </div>
+
+    <button class="btn-check" id="toggleBtn"></button>
+
+</div>
+</div>
+
+<script>
+
+let isCheckedIn = false;
+let checkInTimestamp = null;
+let timerInterval = null;
+
+// Load trạng thái nếu có
+if(localStorage.getItem("checkInTime")){
+    isCheckedIn = true;
+    checkInTimestamp = parseInt(localStorage.getItem("checkInTime"));
+}
+
+function updateClock(){
+    const now = new Date();
+    document.getElementById("currentTime").innerText =
+        now.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+function updateWorkingTime(){
+    if(!checkInTimestamp) return;
+    const now = new Date().getTime();
+    const diff = now - checkInTimestamp;
+
+    const hours = Math.floor(diff / 1000 / 60 / 60);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("workingTime").innerText =
+        String(hours).padStart(2,'0') + ":" +
+        String(minutes).padStart(2,'0') + ":" +
+        String(seconds).padStart(2,'0');
+}
+
+function updateUI(){
+    const btn = document.getElementById("toggleBtn");
+    const statusBox = document.getElementById("statusBox");
+    const statusDot = document.getElementById("statusDot");
+    const statusText = document.getElementById("statusText");
+
+    if(isCheckedIn){
+        btn.innerText = "Check Out";
+        btn.classList.remove("checkin");
+        btn.classList.add("checkout");
+
+        statusBox.style.background = "#d4edda";
+        statusBox.style.color = "#155724";
+        statusDot.style.display = "none";
+        statusText.innerText = "✔ Đã Check In";
+
+        const date = new Date(checkInTimestamp);
+        document.getElementById("checkInTime").innerText =
+            date.toLocaleTimeString();
+
+        timerInterval = setInterval(updateWorkingTime,1000);
+    }else{
+        btn.innerText = "Check In";
+        btn.classList.remove("checkout");
+        btn.classList.add("checkin");
+
+        statusBox.style.background = "#f8d7da";
+        statusBox.style.color = "#721c24";
+        statusDot.style.display = "block";
+        statusDot.style.background = "red";
+        statusText.innerText = "Chưa Check In";
+
+        document.getElementById("checkInTime").innerText = "--:--";
+        document.getElementById("workingTime").innerText = "00:00:00";
+
+        clearInterval(timerInterval);
+    }
+}
+
+document.getElementById("toggleBtn").addEventListener("click",function(){
+
+    if(!isCheckedIn){
+        isCheckedIn = true;
+        checkInTimestamp = new Date().getTime();
+        localStorage.setItem("checkInTime",checkInTimestamp);
+    }else{
+        isCheckedIn = false;
+        localStorage.removeItem("checkInTime");
+        checkInTimestamp = null;
+    }
+
+    updateUI();
+});
+
+updateUI();
+
+</script>
+
+</body>
+</html>
