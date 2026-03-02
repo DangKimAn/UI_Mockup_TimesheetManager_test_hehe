@@ -132,98 +132,114 @@
         <!-- Sidebar -->
         <div class="col-md-2 sidebar">
           <!-- <a href="#">Dashboard</a> -->
-<a href="#">Check In / Check Out</a>
-<a href="#">Lịch sử chấm công</a>
-<a href="#">Đơn nghỉ phép</a>
+<a href="#">Chấm công</a>
+<a href="#">Bảng công của tôi</a>
+<a href="#">Xin nghỉ phép</a>
 <a href="#">Số dư phép</a>
 <a href="#">Báo cáo cá nhân</a>
         </div>
 
         <!-- Dashboard Content -->
         <div class="col-md-10 dashboard-area">
-            <div class="card-custom">
 
-    <!-- Header -->
+    
+    <!-- Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="mb-0"><b>Số dư phép</b></h4>
-        <span class="text-muted">Năm 2026</span>
+        <h4><b>Báo cáo cá nhân</b></h4>
+
+        <div>
+            <button class="btn btn-success me-2">
+                Xuất Excel
+            </button>
+
+            <button class="btn btn-danger">
+                Xuất PDF
+            </button>
+        </div>
     </div>
 
-    <!-- Leave Balance Cards -->
+    <!-- Chọn tháng -->
+    <div class="text-center mb-4">
+        <input type="month" class="form-control w-auto d-inline-block">
+    </div>
+
+    <!-- Summary Cards -->
     <div class="row mb-4">
 
-        <div class="col-md-4">
-            <div class="p-4 rounded bg-light text-center">
-                <h6 class="text-muted">Phép năm</h6>
-                <h2 class="text-success"><b>8</b></h2>
-                <small class="text-muted">ngày còn lại</small>
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Tổng giờ làm</h6>
+                <h3 class="text-primary"><b>168h</b></h3>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="p-4 rounded bg-light text-center">
-                <h6 class="text-muted">Phép đã sử dụng</h6>
-                <h2 class="text-danger"><b>4</b></h2>
-                <small class="text-muted">ngày</small>
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Ngày công</h6>
+                <h3 class="text-info"><b>21</b></h3>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="p-4 rounded bg-light text-center">
-                <h6 class="text-muted">Phép còn lại</h6>
-                <h2 class="text-primary"><b>12</b></h2>
-                <small class="text-muted">ngày</small>
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Số ngày nghỉ</h6>
+                <h3 class="text-warning"><b>2</b></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-custom text-center">
+                <h6 class="text-muted">Tăng ca</h6>
+                <h3 class="text-success"><b>10h</b></h3>
             </div>
         </div>
 
     </div>
 
-    <!-- Leave History -->
-    <h5 class="mb-3"><b>Lịch sử nghỉ phép</b></h5>
+    <!-- Salary Detail -->
+    <div class="card-custom">
 
-    <table class="table table-hover align-middle">
-        <thead class="table-light">
-            <tr>
-                <th>Loại phép</th>
-                <th>Từ ngày</th>
-                <th>Đến ngày</th>
-                <th>Số ngày</th>
-                <th>Trạng thái</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Phép năm</td>
-                <td>05/02/2026</td>
-                <td>06/02/2026</td>
-                <td>2</td>
-                <td><span class="status-present">Đã duyệt</span></td>
-            </tr>
+        <h5 class="mb-3"><b>Chi tiết lương</b></h5>
 
-            <tr>
-                <td>Phép không lương</td>
-                <td>12/02/2026</td>
-                <td>12/02/2026</td>
-                <td>1</td>
-                <td><span class="status-late">Chờ duyệt</span></td>
-            </tr>
+        <table class="table table-bordered align-middle">
+            <tbody>
+                <tr>
+                    <th>Lương cơ bản</th>
+                    <td>15,000,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Phụ cấp</th>
+                    <td>1,000,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Thưởng</th>
+                    <td>500,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <th>Khấu trừ</th>
+                    <td class="text-danger">- 800,000 VNĐ</td>
+                </tr>
+                <tr class="table-light">
+                    <th><b>Lương thực nhận</b></th>
+                    <td class="text-success"><b>15,700,000 VNĐ</b></td>
+                </tr>
+            </tbody>
+        </table>
 
-            <tr>
-                <td>Phép bệnh</td>
-                <td>20/01/2026</td>
-                <td>21/01/2026</td>
-                <td>2</td>
-                <td><span class="status-absent">Từ chối</span></td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 
 </div>
-           
+        </div>
+
+    </div>
+
+</div>
 
         </div>
 
     </div>
 </div>
+
+
 </body>
 </html>
